@@ -11,7 +11,7 @@ import (
 
 //CreateKeystoneRole - Command to create keystone role
 func CreateKeystoneRole(role string) []byte {
-	out, err := sh.Command("/home/esharao/openstackcommand.sh", "role create", role).Output()
+	out, err := sh.Command("/opt/openstackcommand.sh", "role create", role).Output()
 	if err != nil {
 		log.Fatal(err)
 
@@ -22,7 +22,7 @@ func CreateKeystoneRole(role string) []byte {
 
 //ListRoles - command to list roles
 func ListRoles(w http.ResponseWriter, r *http.Request) {
-	out, err := sh.Command("/home/esharao/openstackcommand.sh", "role list").Output()
+	out, err := sh.Command("/opt/openstackcommand.sh", "role list").Output()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -31,7 +31,7 @@ func ListRoles(w http.ResponseWriter, r *http.Request) {
 }
 
 func listgroups(w http.ResponseWriter, r *http.Request) {
-	out, err := sh.Command("/home/esharao/openstackcommand.sh", "group list").Output()
+	out, err := sh.Command("/opt/openstackcommand.sh", "group list").Output()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -56,7 +56,7 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	user := vars["user"]
 
-	out, err := sh.Command("/home/esharao/openstackcommand.sh", "user create --password password1 --project testproject", user).Output()
+	out, err := sh.Command("/opt/openstackcommand.sh", "user create --password password1 --project testproject", user).Output()
 	if err != nil {
 		log.Fatal(err)
 
@@ -71,7 +71,7 @@ func addUserToGroup(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	user := vars["user"]
 	group := vars["group"]
-	out, err := sh.Command("/home/esharao/openstackcommand.sh", "group add user ", group, user).Output()
+	out, err := sh.Command("/opt/openstackcommand.sh", "group add user ", group, user).Output()
 	if err != nil {
 		log.Fatal(err)
 
@@ -100,7 +100,7 @@ func addRoleToGroup(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	role := vars["role"]
 	group := vars["group"]
-	out, err := sh.Command("/home/esharao/openstackcommand.sh", "role add --project testproject --group "+group, role).Output()
+	out, err := sh.Command("/opt/openstackcommand.sh", "role add --project testproject --group "+group, role).Output()
 	if err != nil {
 		log.Fatal(err)
 

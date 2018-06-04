@@ -6,8 +6,8 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"orm/configuration"
-	"orm/dynamicrbac"
+	"ormdemo/configuration"
+	"ormdemo/dynamicrbac"
 
 	prompt "github.com/c-bata/go-prompt"
 	// Uncomment the following line to load the gcp plugin (only required to authenticate against GKE clusters).
@@ -19,10 +19,7 @@ import (
 
 func completer(in prompt.Document) []prompt.Suggest {
 	s := []prompt.Suggest{
-		{Text: "users", Description: "Store the username and age"},
-		{Text: "articles", Description: "Store the article text posted by user"},
-		{Text: "comments", Description: "Store the text commented to articles"},
-		{Text: "groups", Description: "Combine users with specific rules"},
+		{Text: "users", Description: "UserName"},
 	}
 	return prompt.FilterHasPrefix(s, in.GetWordBeforeCursor(), true)
 }
